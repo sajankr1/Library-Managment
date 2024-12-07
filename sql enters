@@ -1,0 +1,19 @@
+CREATE DATABASE library_management;
+USE library_management;
+
+---Books Table---
+CREATE TABLE books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,);
+
+-- Transactions Table
+CREATE TABLE transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
+    user_name VARCHAR(255) NOT NULL,
+    transaction_type ENUM('taken','returned') NOT NULL, -- 'tacken' or 'return'
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
